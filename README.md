@@ -2,6 +2,8 @@
 
 Convert [Claude Code](https://docs.anthropic.com/en/docs/claude-code) commands (`.md` files) to [Antigravity](https://blog.google/technology/google-deepmind/antigravity/) Skills format (folder + `SKILL.md` with YAML frontmatter).
 
+English | [中文](README_CN.md)
+
 The conversion is **lossless**: original content is preserved in full, with only the required YAML frontmatter header added.
 
 ## Why?
@@ -20,16 +22,35 @@ This tool bridges the gap so you can use your Claude commands in Antigravity.
 
 ## Usage
 
+### Option 1: Python (recommended)
+
 ```bash
 # Convert all commands in a directory
-python convert.py --input ~/.claude/commands --output ~/skills-output
+python3 convert.py --input ~/.claude/commands --output ~/skills-output
 
 # Convert a single file
-python convert.py --input ~/.claude/commands/blog.md --output ~/skills-output
+python3 convert.py --input ~/.claude/commands/blog.md --output ~/skills-output
 
 # Preview mode (no files written)
-python convert.py --input ~/.claude/commands --output ~/skills-output --dry-run
+python3 convert.py --input ~/.claude/commands --output ~/skills-output --dry-run
 ```
+
+Requires: Python 3.9+, no external dependencies.
+
+### Option 2: Shell script (no Python needed)
+
+```bash
+# Make executable
+chmod +x convert.sh
+
+# Convert all commands
+./convert.sh ~/.claude/commands ~/skills-output
+
+# Preview mode
+./convert.sh ~/.claude/commands ~/skills-output --dry-run
+```
+
+Requires: Bash only (built-in on macOS / Linux).
 
 ## What it does
 
@@ -69,8 +90,8 @@ Commands in subdirectories (e.g., `sc/analyze.md`) are converted with a prefix: 
 
 ## Requirements
 
-- Python 3.9+
-- No external dependencies
+- **Python script**: Python 3.9+, no external dependencies
+- **Shell script**: Bash (macOS / Linux built-in, Windows via Git Bash or WSL)
 
 ## License
 
