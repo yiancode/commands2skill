@@ -6,6 +6,23 @@ English | [中文](README_CN.md)
 
 The conversion is **lossless**: original content is preserved in full, with only the required YAML frontmatter header added.
 
+## Quick Start
+
+```bash
+# Clone
+git clone https://github.com/yiancode/commands2skill.git
+cd commands2skill
+
+# With Python 3.9+
+python3 convert.py --input ~/.claude/commands --output ~/skills-output
+
+# Without Python (Bash)
+chmod +x convert.sh
+./convert.sh ~/.claude/commands ~/skills-output
+```
+
+Then add `~/skills-output` to **Antigravity → Settings → Skill Custom Paths** and click Refresh.
+
 ## Why?
 
 Claude Code uses **commands** — single `.md` files like `blog.md`, `video.md`.
