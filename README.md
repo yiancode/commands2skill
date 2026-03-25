@@ -69,6 +69,29 @@ chmod +x convert.sh
 
 Requires: Bash only (built-in on macOS / Linux).
 
+## Commit & Push
+
+After converting, commit the output to Git to sync across machines:
+
+```bash
+# First time setup
+cd ~/skills-output
+git init
+git remote add origin https://github.com/<your-username>/my-skills.git
+
+# After updating commands, re-convert and push
+python3 /path/to/commands2skill/convert.py \
+  --input ~/.claude/commands \
+  --output ~/skills-output
+
+cd ~/skills-output
+git add .
+git commit -m "sync skills from commands $(date +%Y-%m-%d)"
+git push origin main
+```
+
+> 💡 Tip: wrap the convert + commit + push steps into a `sync.sh` script so one command keeps everything in sync.
+
 ## What it does
 
 For each `.md` command file:
