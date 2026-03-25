@@ -16,7 +16,7 @@ python3 convert.py --input ~/.claude/commands --output ~/skills-output
 
 # 没有 Python（Bash 即可）
 chmod +x convert.sh
-./convert.sh ~/.claude/commands ~/skills-output
+./convert.sh ~/.claude/commands --output ~/skills-output
 ```
 
 然后在 **Antigravity → Settings → Skill Custom Paths** 中添加 `~/skills-output`，点击 Refresh 即可。
@@ -41,7 +41,7 @@ sc/analyze.md            →  sc-analyze/SKILL.md
 - ✅ 仅在顶部添加 3 行 YAML frontmatter（`name` + `description`），这是 Antigravity 识别 skill 的最低要求
 - ✅ 子目录结构自动处理
 
-## 快速开始
+## 使用方式
 
 ### 方式一：Python 脚本（推荐）
 
@@ -72,6 +72,29 @@ chmod +x convert.sh
 ```
 
 仅需 Bash，macOS / Linux 自带，无需安装任何东西。
+
+## 提交与同步（Commit & Push）
+
+转换完成后，建议将结果提交到 Git，方便多机器同步：
+
+```bash
+# 初始化（只需第一次）
+cd ~/skills-output
+git init
+git remote add origin https://github.com/<你的用户名>/my-skills.git
+
+# 每次更新 commands 后重新转换并提交
+python3 /path/to/commands2skill/convert.py \
+  --input ~/.claude/commands \
+  --output ~/skills-output
+
+cd ~/skills-output
+git add .
+git commit -m "sync skills from commands $(date +%Y-%m-%d)"
+git push origin main
+```
+
+> 💡 提示：可以把上面几行打包成一个脚本 `sync.sh`，以后只需运行一条命令完成「转换 → 提交 → 推送」全流程。
 
 ## 转换示例
 
