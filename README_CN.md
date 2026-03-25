@@ -4,6 +4,23 @@
 
 [English](README.md) | 中文
 
+## 快速开始
+
+```bash
+# 克隆项目
+git clone https://github.com/yiancode/commands2skill.git
+cd commands2skill
+
+# 有 Python 3.9+
+python3 convert.py --input ~/.claude/commands --output ~/skills-output
+
+# 没有 Python（Bash 即可）
+chmod +x convert.sh
+./convert.sh ~/.claude/commands ~/skills-output
+```
+
+然后在 **Antigravity → Settings → Skill Custom Paths** 中添加 `~/skills-output`，点击 Refresh 即可。
+
 ## 为什么需要这个工具？
 
 Claude Code 使用 **commands** —— 单个 `.md` 文件（如 `blog.md`、`video.md`）。
